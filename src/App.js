@@ -143,9 +143,16 @@ const GitHubContributionsQuery = props => {
           const reviews =
             data.gitHub.viewer.contributionsCollection
               .pullRequestReviewContributionsByRepository;
-          const commits =
+          const commitsRepo =
             data.gitHub.viewer.contributionsCollection
               .commitContributionsByRepository;
+
+          const totalCommitNum =
+            data.gitHub.viewer.contributionsCollection.totalCommitContributions;
+
+          const commitedRepos = commitsRepo.map(
+            repo => repo.repository.nameWithOwner
+          );
 
           const getPrCommits = nodes => {
             return `where you did ${nodes.map(commit => {
@@ -170,18 +177,24 @@ const GitHubContributionsQuery = props => {
             .join();
 
           const cleanMessage =
-            "Wow! You did some amazing work today!" +
-            prMessage.replace(/,/g, "");
+            `Wow! You did some amazing work today! You did ${totalCommitNum} commits in total at: ${commitedRepos.join(
+              ", "
+            )}
+            ` + prMessage.replace(/,/g, "");
           textMessage = cleanMessage;
           //props.updateMessage(cleanMessage);
           console.log(cleanMessage);
 
           return (
             <div>
+              <p>
+                You did {totalCommitNum} commits in total at{" "}
+                {commitedRepos.join(", ")}
+              </p>
               {prRepos.map(repo => {
                 return (
                   <div>
-                    Here are the amazing work you have done for
+                    Here are the amazing work you have done for{" "}
                     {repo.repository.nameWithOwner}:
                     {repo.contributions.nodes.map(pr => {
                       return (
@@ -261,6 +274,9 @@ class App extends Component {
   }
 
   render() {
+    const yesterday =
+      new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString().split(".")[0] +
+      "Z";
     return (
       <div className="App">
         <input
@@ -273,7 +289,7 @@ class App extends Component {
             receiverNumber={this.state.phoneNumber}
           />
           <GitHubContributionsQuery
-            from={"2019-08-05T19:24:12Z"}
+            from={yesterday}
             updateMessage={message => this.updateMessage(message)}
           />
         </ApolloProvider>
