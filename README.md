@@ -22,10 +22,11 @@ Let’s let everyone know, let’s let ourselves know how wonderful we are, how 
 
 ## Development phase
 Phase 1
-[] Get data from Github
-[] Send sms to phone throw twilio
+- [ ] Get data from Github
+- [ ] Send sms to phone throw twilio
 
 Phase 2
-[] Revive sms from phone to twilio number
-[] Write data into google doc
+- [ ] Revive sms from phone to twilio number
+- [ ] Set a job to send txt message everyday
+- [ ] Write data into google doc
 
