@@ -1,0 +1,59 @@
+body {
+  font-size: 16px;
+  font-family: Helvetica;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 56px;
+}
+
+small {
+  color: #333;
+}
+
+input {
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+  padding: 6px 12px;
+  outline: none;
+  margin: 12px auto;
+  font-size: 16px;
+}
+
+button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: rgb(132, 52, 214);
+  color: white;
+  font-size: 16px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(132, 52, 214, 0.8);
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.github-btn {
+  background-color: black;
+}
+
+.works {
+  background-color: #ececec;
+  width: fit-content;
+  margin: auto;
+  padding: 16px;
+  border-radius: 6px;
+  margin: 24px auto;
+}

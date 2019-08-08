@@ -186,7 +186,8 @@ const GitHubContributionsQuery = props => {
           console.log(cleanMessage);
 
           return (
-            <div>
+            <div className="works">
+              <h2>Here are some amazing jobs you have done!</h2>
               <p>
                 You did {totalCommitNum} commits in total at{" "}
                 {commitedRepos.join(", ")}
@@ -278,32 +279,36 @@ class App extends Component {
       new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString().split(".")[0] +
       "Z";
     return (
-      <div className="App">
-        <input
-          placeholder="Phone Number"
-          onChange={e => this.updatePhoneNumber(e.target.value)}
-        />
-        <ApolloProvider client={this._oneGraphClient}>
-          <SendMessageMutation
-            message={textMessage}
-            receiverNumber={this.state.phoneNumber}
+      <div>
+        <h1>WonderfulDay</h1>
+        <div className="wrapper">
+          <input
+            placeholder="Phone Number"
+            onChange={e => this.updatePhoneNumber(e.target.value)}
           />
-          <GitHubContributionsQuery
-            from={yesterday}
-            updateMessage={message => this.updateMessage(message)}
-          />
-        </ApolloProvider>
-        <p className="App-intro">
-          {this.state.isLoggedIn ? (
-            <div>
-              <span>You are logged in with Github</span>
-            </div>
-          ) : (
-            <button style={{ fontSize: 18 }} onClick={this._authWithGithub}>
-              Login with Github
-            </button>
-          )}
-        </p>
+          <ApolloProvider client={this._oneGraphClient}>
+            <SendMessageMutation
+              message={textMessage}
+              receiverNumber={this.state.phoneNumber}
+            />
+            <GitHubContributionsQuery
+              from={yesterday}
+              updateMessage={message => this.updateMessage(message)}
+            />
+          </ApolloProvider>
+
+          <p className="App-intro">
+            {this.state.isLoggedIn ? (
+              <div>
+                <small>You are logged in with Github</small>
+              </div>
+            ) : (
+              <button className="github-btn" onClick={this._authWithGithub}>
+                Login with Github
+              </button>
+            )}
+          </p>
+        </div>
       </div>
     );
   }
